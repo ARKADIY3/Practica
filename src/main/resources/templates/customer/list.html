@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список покупателей</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+<h1>Список покупателей</h1>
+<a href="/customers/add">Добавить нового покупателя</a>
+<table>
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Email</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer : ${customers}">
+        <td th:text="${customer.firstName}"></td>
+        <td th:text="${customer.lastName}"></td>
+        <td th:text="${customer.email}"></td>
+        <td>
+            <a th:href="@{/customers/{id}(id=${customer.id})}">Просмотреть</a>
+            <a th:href="@{/customers/edit/{id}(id=${customer.id})}">Изменить</a>
+            <a th:href="@{/customers/delete/{id}(id=${customer.id})}">Удалить</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

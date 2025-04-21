@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали покупателя</title>
+</head>
+<body>
+<h1>Детали покупателя</h1>
+<p>Имя: <span th:text="${customer.firstName}"></span></p>
+<p>Фамилия: <span th:text="${customer.lastName}"></span></p>
+<p>Email: <span th:text="${customer.email}"></span></p>
+<p>Телефон: <span th:text="${customer.phone}"></span></p>
+<p>Адрес: <span th:text="${customer.address}"></span></p>
+<a href="/customers">Назад к списку</a>
+</body>
+</html>

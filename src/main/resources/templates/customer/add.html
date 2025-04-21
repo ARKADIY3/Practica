@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить покупателя</title>
+</head>
+<body>
+<h1>Добавить покупателя</h1>
+<form th:action="@{/customers/add}" th:object="${customer}" method="post">
+    <div>
+        <label for="firstName">Имя:</label>
+        <input type="text" id="firstName" th:field="*{firstName}" required />
+    </div>
+    <div>
+        <label for="lastName">Фамилия:</label>
+        <input type="text" id="lastName" th:field="*{lastName}" required />
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" />
+    </div>
+    <div>
+        <label for="phone">Телефон:</label>
+        <input type="text" id="phone" th:field="*{phone}" />
+    </div>
+    <div>
+        <label for="address">Адрес:</label>
+        <input type="text" id="address" th:field="*{address}" />
+    </div>
+    <div>
+        <button type="submit">Сохранить</button>
+        <a href="/customers">Отмена</a>
+    </div>
+</form>
+</body>
+</html>
