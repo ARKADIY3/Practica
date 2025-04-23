@@ -1,24 +1,34 @@
 package org.example.practica.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "service_orders") // Имя таблицы в базе данных
+@Table(name = "service_orders")
 public class ServiceOrder {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String customerName;
-    private String product;
-    private int quantity;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
-    // Getters and Setters
+    @ManyToOne
+    @JoinColumn(name = "additional_service_id")
+    private AdditionalService additionalService;
+
+    private String status;
+
+    public ServiceOrder() {
+    }
+
+    public ServiceOrder(Long id, Customer customer, AdditionalService additionalService, String status) {
+        this.id = id;
+        this.customer = customer;
+        this.additionalService = additionalService;
+        this.status = status;
+    }
+
     public Long getId() {
         return id;
     }
@@ -27,27 +37,27 @@ public class ServiceOrder {
         this.id = id;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public String getProduct() {
-        return product;
+    public AdditionalService getAdditionalService() {
+        return additionalService;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public void setAdditionalService(AdditionalService additionalService) {
+        this.additionalService = additionalService;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getStatus() {
+        return status;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

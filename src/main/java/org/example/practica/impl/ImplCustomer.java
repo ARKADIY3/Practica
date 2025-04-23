@@ -3,7 +3,6 @@ package org.example.practica.impl;
 import org.example.practica.model.Customer;
 import org.example.practica.repo.CustomerRepository;
 import org.example.practica.service.CustomerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

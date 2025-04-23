@@ -1,15 +1,12 @@
 package org.example.practica.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "additional_services")
 public class AdditionalService {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,7 +14,19 @@ public class AdditionalService {
     private String serviceName;
     private String serviceDescription;
 
-    // Getters and Setters
+    @OneToMany(mappedBy = "additionalService")
+    private List<ServiceOrder> serviceOrders;
+
+    public AdditionalService() {
+    }
+
+    public AdditionalService(Long id, String serviceName, String serviceDescription, List<ServiceOrder> serviceOrders) {
+        this.id = id;
+        this.serviceName = serviceName;
+        this.serviceDescription = serviceDescription;
+        this.serviceOrders = serviceOrders;
+    }
+
     public Long getId() {
         return id;
     }
@@ -40,5 +49,13 @@ public class AdditionalService {
 
     public void setServiceDescription(String serviceDescription) {
         this.serviceDescription = serviceDescription;
+    }
+
+    public List<ServiceOrder> getServiceOrders() {
+        return serviceOrders;
+    }
+
+    public void setServiceOrders(List<ServiceOrder> serviceOrders) {
+        this.serviceOrders = serviceOrders;
     }
 }

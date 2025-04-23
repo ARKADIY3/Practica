@@ -7,7 +7,7 @@
 <body>
 <h1>Редактировать покупателя</h1>
 <form th:action="@{/customers/edit}" th:object="${customer}" method="post">
-    <input type="hidden" th:field="*{id}"/>
+    <input type="hidden" th:field="*{customerId}"/>
     <div>
         <label for="firstName">Имя:</label>
         <input type="text" id="firstName" th:field="*{firstName}" required />

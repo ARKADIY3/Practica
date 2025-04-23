@@ -1,6 +1,6 @@
 package org.example.practica.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "product_categories")
@@ -21,8 +21,7 @@ public class ProductCategory {
     public ProductCategory() {
     }
 
-    public ProductCategory(Long id, Product product, Category category) {
-        this.id = id;
+    public ProductCategory(Product product, Category category) {
         this.product = product;
         this.category = category;
     }

@@ -35,13 +35,13 @@ public class ProductController {
     @GetMapping("/add")
     public String showAddProductForm(Model model) {
         model.addAttribute("product", new Product());
-        return "product/add"; // Убедитесь, что путь совпадает с расположением вашего шаблона
+        return "product/add";
     }
 
     @PostMapping("/add")
     public String addProduct(Product product) {
-        productService.save(product); // Сохраните продукт через сервис
-        return "redirect:/products"; // Перенаправление на список продуктов
+        productService.save(product);
+        return "redirect:/products";
     }
 
     @GetMapping("/edit/{id}")

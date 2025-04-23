@@ -1,22 +1,34 @@
 package org.example.practica.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "complaints") // Укажите имя таблицы, если нужно
+@Table(name = "complaints")
 public class Complaint {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String description;
 
-    // Конструкторы, геттеры и сеттеры
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    public Complaint() {
+    }
+
+    public Complaint(Long id, String description, Customer customer, Order order) {
+        this.id = id;
+        this.description = description;
+        this.customer = customer;
+        this.order = order;
+    }
+
     public Long getId() {
         return id;
     }
@@ -31,5 +43,21 @@ public class Complaint {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

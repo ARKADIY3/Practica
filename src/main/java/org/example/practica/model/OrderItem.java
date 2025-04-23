@@ -1,24 +1,34 @@
 package org.example.practica.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "order_items")  // Имя таблицы в базе данных
+@Table(name = "order_items")
 public class OrderItem {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long orderId;       // Ссылка на заказ
-    private String productName; // Название продукта
-    private int quantity;       // Количество
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
-    // Getters and Setters
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    private int quantity;
+
+    public OrderItem() {
+    }
+
+    public OrderItem(Long id, Order order, Product product, int quantity) {
+        this.id = id;
+        this.order = order;
+        this.product = product;
+        this.quantity = quantity;
+    }
+
     public Long getId() {
         return id;
     }
@@ -27,20 +37,20 @@ public class OrderItem {
         this.id = id;
     }
 
-    public Long getOrderId() {
-        return orderId;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
-    public String getProductName() {
-        return productName;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public int getQuantity() {

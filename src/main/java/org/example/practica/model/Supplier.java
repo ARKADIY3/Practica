@@ -1,10 +1,8 @@
 package org.example.practica.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "suppliers") // имя таблицы в базе данных
@@ -17,7 +15,27 @@ public class Supplier {
     private String name;
     private String contactInfo;
 
-    // Getters and Setters
+    @OneToMany(mappedBy = "supplier")
+    private List<Product> products;
+
+    public Supplier() {
+    }
+
+    public Supplier(Long id, String name, String contactInfo, List<Product> products) {
+        this.id = id;
+        this.name = name;
+        this.contactInfo = contactInfo;
+        this.products = products;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
     public Long getId() {
         return id;
     }
